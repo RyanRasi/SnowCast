@@ -22,9 +22,9 @@ response = requests.get(API_REQUEST)
 if response.status_code != 200:
     print('Request failed\nStatus code: ', response.status_code)
     exit()
+else:
+    # Save the CSV data to a file
+    with open('weather_data.csv', 'w', newline='', encoding='utf-8') as file:
+        file.write(response.text)
 
-# Save the CSV data to a file
-with open('weather_data.csv', 'w', newline='', encoding='utf-8') as file:
-    file.write(response.text)
-
-print("CSV data has been saved to weather_data.csv")
+    print("CSV data has been saved to weather_data.csv")
