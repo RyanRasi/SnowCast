@@ -1,0 +1,12 @@
+version: '1'
+
+services:
+  app1:
+    build: ./microservices/lstm_api/
+    ports:
+      - "8001:8001"
+
+  app2:
+    build: ./snowcast/
+    ports:
+      - "8000:8000"
