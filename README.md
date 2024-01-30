@@ -11,21 +11,33 @@ A Machine Learning LSTM weather forecasting tool designed to predict snowfall pa
 ## Technologies Used
 
 - Python
-- Machine Learning (LSTM)
+- Machine Learning (TensorFlow)
 - Weather APIs (VisualCrossing)
 - Data Visualization (Matplotlib, Pandas)
 
 ## Getting Started
 
+Pre-requisites
 1. Clone the repository:
-   ```
-   git clone https://github.com/ryanrasi/SnowCast.git
-   ```
-2. Install dependencies
-   ```
-   pip install -r requirements.txt
-   ```
-3. Run SnowCast
-   ```
-   python snowcast.py
-   ```
+```
+git clone https://github.com/ryanrasi/SnowCast.git
+```
+2. Go to visualcrossing, create an account and within the ./microservices/lstm_api folder, create a file called .env
+3. Within this file type API_KEY= and paste your API key e.g.
+```
+API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXX"
+```
+
+Docker Container
+
+1. Run ```docker-compose build```
+2. Run ```docker-compose up```
+
+Local Hosting
+
+1. Open two terminals and cd into the repo within the folder directory
+2. In terminal A, cd into the snowcast folder ```cd snowcast```
+3. In terminal B, cd into the microservices/lstm_api folder ```cd microservices/lstm_api```
+4. In both terminals run ```pip install -r requirements.txt```
+5. In terminal A, run ```python manage.py collectstatic```, ```python manage.py makemigrations```, ```python manage.py migrate```, ```python manage.py runserver```, and accept the 'yes' prompts
+6. In terminal B, ```run uvicorn main:app --host 0.0.0.0 --port 8001```
