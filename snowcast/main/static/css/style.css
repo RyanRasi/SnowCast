@@ -14,15 +14,21 @@ body {
 .container {
     text-align: center;
     margin-top: 20px;  /* Adjust the margin from the title */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.location_param, duration_param {
-    width: 60%;
+.location_param, .duration_param {
     padding: 15px;
     font-size: 18px;
     border: 2px solid #ccc;  /* Light gray border */
     border-radius: 5px;
     outline: none;
+    width: 200px;
+}
+.duration_param {
+    width: 75px;
 }
 
 .placeholder {
