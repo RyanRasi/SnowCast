@@ -41,3 +41,13 @@ API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXX"
 4. In both terminals run ```pip install -r requirements.txt```
 5. In terminal A, run ```python manage.py collectstatic```, ```python manage.py makemigrations```, ```python manage.py migrate```, ```python manage.py runserver```, and accept the 'yes' prompts
 6. In terminal B, ```run uvicorn main:app --host 0.0.0.0 --port 8001```
+
+### How to use
+
+1. Open your browser to either your localhost(if you built locally) or your docker IP followed by the port 8000. E.g. ```localhost:8000```
+2. Type in a location as well as the duration you wish to predict the optimal snow conditions for.
+3. Your results will be visible upon clicking on 'Predict'.
+
+### Methodology
+
+The training data was provided by VisualCrossing in a 365 day period from the current date. This is to provide accurate predictions at the consequence of conducting the training after the user has clicked predict.
