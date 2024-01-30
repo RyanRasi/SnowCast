@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Snowcast</title>
+</head>
+
+<body>
+    <h1 class="app-title">Snowcast</h1>
+    <div class="container">
+        <div class="container">
+            <div class="search-buttons">
+                <input type="text" class="location_param" id="locationInput" placeholder="Location">
+                <input type="number" class="duration_param" id="durationInput" placeholder="Number of days" min="1" max="21">
+                <button class="search-button" onclick="predict()">Predict</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading" style="display: none;">
+        Predicting Weather...
+    </div>
+    <!-- Display results div -->
+    <div id="results" class="results"></div>
+
+    <!-- Return to Search button -->
+    <button id="return-to-search-button" class="return-to-search-button" onclick="returnToSearch()">Make Another Prediction</button>
+
+    <script>
+        const API_URL = `http://localhost:8001`;
+
+        // Function to handle search button click
+        function predict() {
+            const location = document.querySelector('.location_param').value;
+            const duration = document.querySelector('.duration_param').value;
+            makeApiRequest(location, duration);
+        }
+
+        // Function to handle return to search button click
+        function returnToSearch() {
+            // Show the search buttons
+            document.querySelector('.search-buttons').style.display = 'block';
+            // Show the title
+            document.querySelector('.app-title').style.display = 'block';
+            // Hide the results
+            document.getElementById('results').style.display = 'none';
+            // Hide the return button
+            document.getElementById('return-to-search-button').style.display = 'none';
+            // Hide the loading text
+            document.querySelector('.loading').style.display = 'none'
+        }
+
+        // Function to make API request
+        function makeApiRequest(location, duration) {
+            document.querySelector('.loading').style.display = 'block'
+            fetch(`http://localhost:8001/recommend/?location_param=${location}&duration_param=${duration}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(location, duration, JSON.parse(data));
+                })
+                .catch(error => console.error('Error:', error));
+        
+            // Hide the search buttons
+            document.querySelector('.search-buttons').style.display = 'none';
+            // Hide the title
+            document.querySelector('.app-title').style.display = 'none';
+            // Show the return button
+            document.getElementById('return-to-search-button').style.display = 'block';
+        }
+
+        // Function to display results
+        function displayResults(location, duration, data) {
+            document.querySelector('.loading').style.display = 'none'
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';  // Clear previous results
+
+            // Populate results in the div
+            data.forEach(prediction => {
+                const resultItem = document.createElement('div');
+
+                // Location
+                const location_text = document.createElement('div');
+                title.classList.add('big-title');
+                title.innerHTML = `${location} SnowCast`;
+                resultItem.appendChild(location_text);
+
+                // Duration
+                const duration_text = document.createElement('div');
+                title.classList.add('big-title');
+                title.innerHTML = `Over ${duration} days the best snow conditions are expected between:`;
+                resultItem.appendChild(duration_text);
+
+                // Date duration
+                const start_and_end_text = document.createElement('div');
+                title.classList.add('big-title');
+                title.innerHTML = `${prediction.start_long} and ${prediction.end_long}`;
+                resultItem.appendChild(start_and_end_text);
+
+                // Average inches of snow
+                const inches_text = document.createElement('div');
+                title.classList.add('big-title');
+                title.innerHTML = `With an average of ${prediction.inches} inches of snow expected`;
+                resultItem.appendChild(inches_text);
+
+                // Create a div for the result
+                const resultContainer = document.createElement('div');
+                resultContainer.classList.add('result-container');
+
+                // Append the result item to the result container
+                resultContainer.appendChild(resultItem);
+
+                // Append the result container to the results div
+                resultsDiv.appendChild(resultContainer);
+
+                // Show the results
+                document.getElementById('results').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+
+</html>
