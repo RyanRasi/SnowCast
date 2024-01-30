@@ -17,7 +17,7 @@ A Machine Learning LSTM weather forecasting tool designed to predict snowfall pa
 
 ## Getting Started
 
-Pre-requisites
+### Pre-requisites
 1. Clone the repository:
 ```
 git clone https://github.com/ryanrasi/SnowCast.git
@@ -28,12 +28,12 @@ git clone https://github.com/ryanrasi/SnowCast.git
 API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
-Docker Container
+### Docker Container
 
 1. Run ```docker-compose build```
 2. Run ```docker-compose up```
 
-Local Hosting
+### Local Hosting
 
 1. Open two terminals and cd into the repo within the folder directory
 2. In terminal A, cd into the snowcast folder ```cd snowcast```
