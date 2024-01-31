@@ -40,7 +40,7 @@ API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXX"
 3. In terminal B, cd into the microservices/lstm_api folder ```cd microservices/lstm_api```
 4. In both terminals run ```pip install -r requirements.txt```
 5. In terminal A, run ```python manage.py collectstatic```, ```python manage.py makemigrations```, ```python manage.py migrate```, ```python manage.py runserver```, and accept the 'yes' prompts
-6. In terminal B, ```run uvicorn main:app --host 0.0.0.0 --port 8001```
+6. In terminal B, run ```uvicorn main:app --host 0.0.0.0 --port 8001```
 
 ### How to use
 
