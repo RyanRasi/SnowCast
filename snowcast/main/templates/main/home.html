@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="app-title">Snowcast</h1>
+    <h1 class="app-title">SnowCast</h1>
     <div class="container">
         <div class="container">
             <div class="search-buttons">
@@ -26,6 +26,7 @@
     </div>
     <!-- Display results div -->
     <div id="results" class="results"></div>
+    <img id="plotImage" src="" alt="Your Plot Description">
 
     <!-- Return to Search button -->
     <button id="return-to-search-button" class="return-to-search-button" onclick="returnToSearch()">Make Another Prediction</button>
@@ -48,6 +49,7 @@
             document.querySelector('.app-title').style.display = 'block';
             // Hide the results
             document.getElementById('results').style.display = 'none';
+            document.getElementById('plotImage').style.display = 'none';
             // Hide the return button
             document.getElementById('return-to-search-button').style.display = 'none';
             // Hide the loading text
@@ -106,6 +108,12 @@
                 title.innerHTML = `With an average of ${prediction.inches} inches of snow expected`;
                 resultItem.appendChild(inches_text);
 
+                // Add plot
+                var imgElement = document.getElementById('plotImage');
+
+                // Set the src attribute with the base64 string
+                imgElement.src = `data:image/png;base64,${prediction.yearly_forecast.image_base64}`;
+
                 // Create a div for the result
                 const resultContainer = document.createElement('div');
                 resultContainer.classList.add('result-container');
@@ -118,6 +126,7 @@
 
                 // Show the results
                 document.getElementById('results').style.display = 'block';
+                document.getElementById('plotImage').style.display = 'block';
             });
         }
     </script>
