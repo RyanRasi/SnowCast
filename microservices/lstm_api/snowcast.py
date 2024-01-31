@@ -108,10 +108,10 @@ def recommend(data_io, duration_param):
     # Make predictions on the entire dataset
     combined_predictions = model1.predict(X_combined)
     # Plotting Predictions on the entire dataset
-    ##plt.plot(combined_predictions, label='Predicted Snow')
-    ##plt.legend()
-    ##plt.title('Yearly Forecast')
-    ##plt.show()
+    # plt.plot(combined_predictions, label='Predicted Snow')
+    # plt.legend()
+    # plt.title('Yearly Forecast')
+    # plt.show()
 
     window_days = int(duration_param)
     best_start, best_end, best_snow = find_best_snow_period(model1, X_combined, window_days, data_io['datetime'])
