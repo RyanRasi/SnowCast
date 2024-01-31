@@ -1,5 +1,6 @@
 import requests
 import io
+import pandas as pd
 from dotenv import dotenv_values
 
 def fetch(location):
