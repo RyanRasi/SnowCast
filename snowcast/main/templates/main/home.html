@@ -26,7 +26,7 @@
     </div>
     <!-- Display results div -->
     <div id="results" class="results"></div>
-    <img id="plotImage" src="" alt="Your Plot Description">
+    <img id="plotImage" src="">
 
     <!-- Return to Search button -->
     <button id="return-to-search-button" class="return-to-search-button" onclick="returnToSearch()">Make Another Prediction</button>
@@ -62,7 +62,7 @@
             fetch(`http://localhost:8001/recommend/?location_param=${location}&duration_param=${duration}`)
                 .then(response => response.json())
                 .then(data => {
-                    displayResults(location, duration, JSON.parse(data));
+                    displayResults(location, duration, data);
                 })
                 .catch(error => console.error('Error:', error));
         
