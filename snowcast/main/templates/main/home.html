@@ -79,55 +79,53 @@
             document.querySelector('.loading').style.display = 'none'
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = '';  // Clear previous results
-
+            console.log(data);
             // Populate results in the div
-            data.forEach(prediction => {
-                const resultItem = document.createElement('div');
+            const resultItem = document.createElement('div');
 
-                // Location
-                const location_text = document.createElement('div');
-                title.classList.add('big-title');
-                title.innerHTML = `${location} SnowCast`;
-                resultItem.appendChild(location_text);
+            // Location
+            const location_text = document.createElement('div');
+            location_text.classList.add('big-title');
+            location_text.innerHTML = `${location} SnowCast`;
+            resultItem.appendChild(location_text);
 
-                // Duration
-                const duration_text = document.createElement('div');
-                title.classList.add('big-title');
-                title.innerHTML = `Over ${duration} days the best snow conditions are expected between:`;
-                resultItem.appendChild(duration_text);
+            // Duration
+            const duration_text = document.createElement('div');
+            duration_text.classList.add('big-title');
+            duration_text.innerHTML = `Over ${duration} days the best snow conditions are expected between:`;
+            resultItem.appendChild(duration_text);
 
-                // Date duration
-                const start_and_end_text = document.createElement('div');
-                title.classList.add('big-title');
-                title.innerHTML = `${prediction.start_long} and ${prediction.end_long}`;
-                resultItem.appendChild(start_and_end_text);
+            // Date duration
+            const start_and_end_text = document.createElement('div');
+            start_and_end_text.classList.add('big-title');
+            start_and_end_text.innerHTML = `${data.start_long} and ${data.end_long}`;
+            resultItem.appendChild(start_and_end_text);
 
-                // Average inches of snow
-                const inches_text = document.createElement('div');
-                title.classList.add('big-title');
-                title.innerHTML = `With an average of ${prediction.inches} inches of snow expected`;
-                resultItem.appendChild(inches_text);
+            // Average inches of snow
+            const inches_text = document.createElement('div');
+            inches_text.classList.add('big-title');
+            inches_text.innerHTML = `With an average of ${data.inches} inches of snow expected`;
+            resultItem.appendChild(inches_text);
 
-                // Add plot
-                var imgElement = document.getElementById('plotImage');
+            // Add plot
+            var imgElement = document.getElementById('plotImage');
 
-                // Set the src attribute with the base64 string
-                imgElement.src = `data:image/png;base64,${prediction.yearly_forecast.image_base64}`;
+            // Set the src attribute with the base64 string
+            imgElement.src = `data:image/png;base64,${data.yearly_forecast.image_base64}`;
 
-                // Create a div for the result
-                const resultContainer = document.createElement('div');
-                resultContainer.classList.add('result-container');
+            // Create a div for the result
+            const resultContainer = document.createElement('div');
+            resultContainer.classList.add('result-container');
 
-                // Append the result item to the result container
-                resultContainer.appendChild(resultItem);
+            // Append the result item to the result container
+            resultContainer.appendChild(resultItem);
 
-                // Append the result container to the results div
-                resultsDiv.appendChild(resultContainer);
+            // Append the result container to the results div
+            resultsDiv.appendChild(resultContainer);
 
-                // Show the results
-                document.getElementById('results').style.display = 'block';
-                document.getElementById('plotImage').style.display = 'block';
-            });
+            // Show the results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('plotImage').style.display = 'block';
         }
     </script>
 </body>
